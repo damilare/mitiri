@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> {{ post.title }}</h1>
+<div clsss="actions">
+	<button>Vote</button>
+</div>
+<div class="post-body">
+	{{ post.synopsis }}
+</div>
+<div class="post-comment">
+	<form action="/comment" method="posts" />
+		<textarea></textarea><br />
+		<input type="Submit" name="Submit" value="Submit" />
+	</form>
+</div>
+{% endblock %}
