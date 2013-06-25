@@ -1,1 +1,19 @@
-Hello World
+{% extends "base.html" %}
+{% block content %}
+<h1>Side Things!</h1>
+{% for post in posts %}
+<div class="post">
+	{% if post.internal == True %}
+		<a href="/single/{{ post.id }}">
+	{% else %}
+		<a href="/external/{{ post.url_slug }}">
+	{% endif %}
+			<h3>{{ post.title }}</h3>
+			<span class="stat">{{ post.num_comments}} | {{ post.num_votes }}</span>
+			<span class="action">
+				<a href="/vote">Vote</a>
+				<a href="/comment">Comment</a>
+			</span>
+		</a>
+</div>
+{% endblock %}

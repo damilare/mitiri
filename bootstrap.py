@@ -14,7 +14,7 @@ def setup():
 
 app, db = setup()
 
-from public.views    import pages
+from public.views import pages
 
 app.register_blueprint(pages)
 

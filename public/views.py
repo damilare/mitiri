@@ -3,17 +3,17 @@ from flask import Blueprint, render_template
 from setup import app, db
 from models import Post
 
-pages = Blueprint('pages', __name__, template_folder='templates',
-                static_folder='static', static_url_path='/static')
+pages = Blueprint('pages', __name__, template_folder='templates')
 
 @pages.route('/')
 def home():
 	posts = Post.fetch_all()
 	return render_template('home.html', **{'posts': posts})
 
-@pages.route('/single')
-def single():
-	return 'Single post, exactact if possible'
+@pages.route('/single/<post_id>')
+def single(post_id):
+	posts = Post.fetch_one(post_id)
+	return render_template('single.html', **{'post': posts})
 
 @pages.route('/vote')
 def vote():
@@ -22,4 +22,8 @@ def vote():
 @pages.route('/comment')
 def comment():
 	return 'Post request for comments'
+
+@pages.route('/external')
+def external(post_slug):
+	return 'Store stat and take user away'
 
