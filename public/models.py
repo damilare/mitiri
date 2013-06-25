@@ -16,7 +16,7 @@ class Document(object):
 	def fetch_all(self):
 		return db.posts.find()
 
-	def findOne(self, condition=None):
+	def find_one(self, condition=None):
 		return self.collection.find_one(self._is_empty(condition))
 
 	def delete(self, condition=None):
