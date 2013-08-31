@@ -1,4 +1,4 @@
-from setup import db
+from app import db
 
 class Document(object):
 	def __init__(self):
