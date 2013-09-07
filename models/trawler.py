@@ -13,7 +13,7 @@ class Trawler(object):
         ''' Load sources from DB '''
         # think about an algorithm
         # for getting appropriate source
-        return self.db.sources.find()
+        return self.db.sources.find({'has_rules': True})
 
     def trawl(self):
         ''' Get a source, and parser into appropriate format '''
