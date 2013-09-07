@@ -1,20 +1,24 @@
-from setup import app, db
+import pymongo
+from flask import Flask
 
-@app.route('/')
-def home():
-	return 'Return all posts'
+def setup():
+    app = Flask(__name__)
+    app.config.from_object('settings')
 
-@app.route('/single')
-def single():
-	return 'Single post, exactact if possible'
+    config = app.config
+    conn = pymongo.connection.Connection(config['MONGODB_HOST'],
+                                         config['MONGODB_PORT'])
+    db = conn[config['MONGODB_DB']]
 
-@app.route('/vote')
-def vote():
-	return 'Post request to vote up or down a post'
+    return app, db
 
-@app.route('/comment')
-def comment():
-	return 'Post request for comments'
+app, db = setup()
+
+from public.views import pages
+
+app.register_blueprint(pages)
 
 if __name__ == '__main__':
-	app.run()
+    app.run(debug=True)
+
+
