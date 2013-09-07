@@ -1,5 +1,5 @@
 import logging
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, Tag
 
 logger = logging.getLogger('mitiri')
 
@@ -10,11 +10,19 @@ class Parser(object):
     def parse(self, doc, source_id):
         """ Parse raw HTML response """
         rules = self._get_rule(source_id)
-        return _doc_to_structure(rules, doc)
+        return self._doc_to_structure(rules, doc)
+
+    def _parse_link(self, link):
+	""" extract url from link returns a pair """
+	if isinstance(link, Tag) and link.name == 'a':
+            return (link.get('href', None), getattr(link, 'text', None))
 
     def _doc_to_structure(self, rules, doc):
         ''' Rule to internal structure '''
-        return None
+        soup = BeautifulSoup(doc)
+        dish = soup.find(rules['elem'], {"class": rules['class']})
+        links = filter(lambda x: getattr(x, 'name', None) == 'a', dish)
+        return map(self._parse_link, links)
 
     def _get_rule(self, source_id):
         rule = self.db.rules.find_one({"source_id": source_id})
