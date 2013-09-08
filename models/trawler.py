@@ -1,5 +1,5 @@
 from datetime import datetime
-from app import db
+from setup import db
 from loader import Loader
 from parser import Parser
 

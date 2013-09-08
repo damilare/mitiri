@@ -1,5 +1,5 @@
 import csv, sys
-from app import db
+from setup import db
 from models.trawler import Trawler
 
 def reload_data(db):

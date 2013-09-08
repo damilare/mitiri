@@ -1,5 +1,5 @@
 import requests
-from app import db
+from setup import db
 
 class Loader(object):
     def __init__(self):

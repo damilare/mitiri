@@ -1,22 +1,9 @@
-import pymongo
-from flask import Flask
-
-def setup():
-    app = Flask(__name__)
-    app.config.from_object('settings')
-
-    config = app.config
-    conn = pymongo.connection.Connection(config['MONGODB_HOST'],
-                                         config['MONGODB_PORT'])
-    db = conn[config['MONGODB_DB']]
-
-    return app, db
-
-app, db = setup()
-
+from setup import app
 from public.views import pages
+from admin.views import admin
 
 app.register_blueprint(pages)
+app.register_blueprint(admin)
 
 if __name__ == '__main__':
     app.run(debug=True)
