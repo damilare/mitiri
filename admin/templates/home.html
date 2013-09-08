@@ -3,7 +3,37 @@
 <div class="row-fluid post" style="margin-top: 50px">
     <div class="span12">
         <h1>Rules Builder</h1>
-        Hello World
+        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
+            <tr>
+                <td>Select Source</td>
+                <td>
+                    <select name="source" />
+                        {% for src in sources %}
+                            <option value="{{ src._id }}">{{ src.url }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Or Paste URL</td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr>
+                <td>Paste Rule</td>
+                <td>
+                    <textarea name="rule"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <button id="preview-rule" class="btn btn-primary">Preview</button>
+                    <button id="save-rule" class="btn btn-success">Save</button>
+                </td>
+            </tr>
+        </table>
     </div>
+    <h3>Preview</h3>
+    
 </div>
 {% endblock %}
