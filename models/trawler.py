@@ -21,7 +21,6 @@ class Trawler(object):
         for src in self.sources:
             doc = self.loader.load(src['url'])
             entries = self.parser.parse(doc, source_id=src['_id'])
-            print 'saving entries'
             for entry in entries:
                 db.entries.insert({
                     'source_id': src['_id'],

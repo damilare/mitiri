@@ -8,6 +8,7 @@
                 <td>Select Source</td>
                 <td>
                     <select name="source" />
+                        <option value="">Select Source</option>
                         {% for src in sources %}
                             <option value="{{ src._id }}">{{ src.url }}</option>
                         {% endfor %}
@@ -16,7 +17,7 @@
             </tr>
             <tr>
                 <td>Or Paste URL</td>
-                <td><input type="text" /></td>
+                <td><input type="text" name="source_url"/></td>
             </tr>
             <tr>
                 <td>Paste Rule</td>
