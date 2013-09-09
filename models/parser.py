@@ -7,10 +7,12 @@ class Parser(object):
     def __init__(self, db):
         self.db = db
 
-    def parse(self, doc, source_id):
+    def parse(self, doc, source_id=None, rules=None):
         """ Parse raw HTML response """
-        rules = self._get_rule(source_id)
-        return self._doc_to_structure(rules, doc)
+        if not rules and source_id:
+            rules = self._get_rule(source_id)
+        if rules:
+            return self._doc_to_structure(rules, doc)
 
     def _parse_link(self, link):
 	""" extract url from link returns a pair """

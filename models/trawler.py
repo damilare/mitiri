@@ -1,5 +1,4 @@
 from datetime import datetime
-from setup import db
 from loader import Loader
 from parser import Parser
 
@@ -16,6 +15,10 @@ class Trawler(object):
         # for getting appropriate source
         return self.db.sources.find({'has_rules': True})
 
+    def trawl_url(self, url, rules=None, source_id=None):
+        doc = self.loader.load(url)
+        return self.parser.parse(doc, source_id, rules=rules) 
+
     def trawl(self):
         ''' Get a source, and parser into appropriate format '''
         for src in self.sources:
@@ -29,5 +32,5 @@ class Trawler(object):
 
 
 if __name__ == '__main__':
-    Trawler(db).trawl()
+    Trawler(db).trawl_all()
 

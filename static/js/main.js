@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var rule = $('textarea[name=rule]');
-    var source = $('select[name=source]');
+    var rules = $('textarea[name=rules]');
+    var source_id = $('select[name=source_id]');
     var source_url = $('input[name=source_url]');
     var preview_btn = $('#preview-rule');
 
@@ -10,11 +10,12 @@ $(document).ready(function(){
     // functions
     function preview(e) {
         e.preventDefault();
-        rule_data = {'source': source.val(),
+        rule_data = {'source_id': source_id.val(),
                      'source_url': source_url.val(),
-                     'rule': rule.val()}
+                     'rules': rules.val()}
 
-        $.post('/admin/rule/build', function(data){
+        console.log(rule_data);
+        $.post('/admin/rule/build', rule_data, function(data){
             display_preview(data);
         })
     }

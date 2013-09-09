@@ -7,7 +7,7 @@
             <tr>
                 <td>Select Source</td>
                 <td>
-                    <select name="source" />
+                    <select name="source_id" />
                         <option value="">Select Source</option>
                         {% for src in sources %}
                             <option value="{{ src._id }}">{{ src.url }}</option>
@@ -22,7 +22,7 @@
             <tr>
                 <td>Paste Rule</td>
                 <td>
-                    <textarea name="rule"></textarea>
+                    <textarea name="rules"></textarea>
                 </td>
             </tr>
             <tr>
