@@ -1,3 +1,4 @@
+import os
 import pymongo
 from flask import Flask
 
@@ -13,5 +14,5 @@ def setup():
     return app, db
 
 app, db = setup()
-
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
