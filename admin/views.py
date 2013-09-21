@@ -12,8 +12,8 @@ def home():
     sources = db.sources.find()
     return render_template('home.html', **{'sources': sources})
 
-@admin.route('/admin/rule/build', methods=['POST'])
-def rule_builder():
+@admin.route('/admin/rule/preview', methods=['POST'])
+def preview_rule():
     to_trawl = None
     trawler = Trawler(db)
 
@@ -39,4 +39,17 @@ def rule_builder():
     return jsonify({'status': 'Failure'})
 
 
+@admin.route('/admin/rule/save', methods=['POST'])
+def save_rule():
+    source_id = request.form.get('source_id', None)
+    source_url = request.form.get('source_url', '')
+    rules = request.form.get('rules', None)
 
+    if not source_id and source_url:
+       source_id = db.sources.insert({'url': source_url, 'weight': 1})
+      
+    if rules:
+       rules = json.loads(rules)
+       db.rules.insert({'source_id': source_id, 'elem': rules['elem'], 'class': rules['class']})
+
+    return jsonify({'status': 'Success', 'message': 'Rule successfully created'})

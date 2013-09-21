@@ -20,7 +20,10 @@ class Parser(object):
             return (link.get('href', None), getattr(link, 'text', None))
 
     def _doc_to_structure(self, rules, doc):
-        ''' Rule to internal structure '''
+        ''' Rule to internal structure
+            rule structure is elem -> element, class -> class
+            in future, we'd require a dynamic rule structure
+        '''
         soup = BeautifulSoup(doc)
         dish = soup.find(rules['elem'], {"class": rules['class']})
         links = filter(lambda x: getattr(x, 'name', None) == 'a', dish)
