@@ -6,6 +6,5 @@ Werkzeug==0.9.1
 ipython==0.13.2
 itsdangerous==0.21
 pymongo==2.5.2
-readline==6.2.4.1
 requests==1.2.3
 wsgiref==0.1.2
