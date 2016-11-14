@@ -1,7 +1,7 @@
 url,tags,rule,weight
 http://www.nigeriacommunicationsweek.com.ng/,"communication, technology",,1
 http://www.nigeriasun.com/,news,,1
-http://lindaikeji.blogspot.co.uk/,"gossip, blog, lifestyle",blogspot,1
+http://lindaikeji.blogspot.co.uk/,"gossip, blog, lifestyle",blogspot,1,'{"elem": "h3", "class": "post-title"}'
 http://www.bellanaija.com/,"gossip, music, movies, events, news, beauty",,1
 http://techloy.com/,technology,,1
 http://www.techcabal.com/,technology,,1
@@ -43,3 +43,5 @@ http://www.lailasblog.com/,,,
 http://hotnaijanews.com/,"news, gossip, entertainment",,
 http://www.konnektafrika.com/,"news, politics, entertainment",,
 http://www.innovation-village.com/,"business, entertainment, technology, marketing",,
+http://www.nairaland.com/,"forum",1,'{"elem": "td", "class":"featured w"}'
+

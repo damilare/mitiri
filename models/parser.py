@@ -25,9 +25,13 @@ class Parser(object):
             in future, we'd require a dynamic rule structure
         '''
         soup = BeautifulSoup(doc)
-        dish = soup.find(rules['elem'], {"class": rules['class']})
-        links = filter(lambda x: getattr(x, 'name', None) == 'a', dish)
-        return map(self._parse_link, links)
+        try:
+            dish = soup.find(rules['elem'], rules['class'])
+            links = filter(lambda x: getattr(x, 'name', []) == 'a', dish)
+            return map(self._parse_link, links)
+        except TypeError:
+            print(doc)
+            return []
 
     def _get_rule(self, source_id):
         rule = self.db.rules.find_one({"source_id": source_id})
